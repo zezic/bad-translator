@@ -71,14 +71,50 @@ textarea, button {
   position: relative;
 }
 .piece {
-    font-size: 14px;
-    color: #292037;
-    text-transform: capitalize;
-    transition: color 0.5s ease-in-out;
+  font-size: 14px;
+  color: #292037;
+  text-transform: capitalize;
+  position: relative;
+  transition: color 0.5s ease-in-out;
+  cursor: default;
 }
 .piece:not(:last-child)::after {
   content: '\f105';
   opacity: 0.5;
+}
+.piece .tip {
+  width: 140px;
+  position: absolute;
+  left: 25%;
+  margin-left: -70px;
+  text-align: center;
+  display: none;
+  top: 28px;
+}
+.piece:last-child .tip {
+  left: 50%;
+}
+.piece .tip span {
+  color: white;
+  background-color: black;
+  padding: 4px 7px 5px;
+  border-radius: 6px;
+}
+.piece .tip span::before {
+  display: block;
+  content: " ";
+  border-radius: 0;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  top: 0;
+  left: 50%;
+  transform: translateX(-5px) translateY(-6px) rotate(45deg);
+}
+
+.piece:hover .tip {
+  display: block;
 }
 h3, .translations {
   color: #292037;

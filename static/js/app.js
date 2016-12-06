@@ -29,7 +29,7 @@ $(document).ready(function() {
           var name = languages.filter(function(obj) {
             return obj.code == code;
           })[0].name;
-          $(".chain").append($("<span class='piece' title='" + name + "'>" + message.chain[idx] + "</span>"));
+          $(".chain").append($("<span class='piece'>" + message.chain[idx] + "<div class='tip'><span>" + name + "</span></div></span>"));
         }
         self.removeClass("disabled");
       }
