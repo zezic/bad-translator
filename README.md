@@ -13,7 +13,7 @@
     cp instance/config.py.example instance/config.py
     vim instance/config.py
 
-# Run:
+## Run:
 
     python app.py
 
