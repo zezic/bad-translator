@@ -12,8 +12,14 @@ class BadTranslator(object):
         r = requests.get(url)
         print("tr:", r.json())
         if r.json().get("code") != 200:
-            return text
-        return r.json().get("text")[0]
+            return {
+                "success": False,
+                "text": text
+            }
+        return {
+            "success": True,
+            "text": r.json().get("text")[0]
+        }
 
     def detect_lang(self, text):
         url = "https://translate.yandex.net/api/v1.5/tr.json/detect?key=" + self.api_key + "&text=" + text + "&hint=ru,en"
@@ -34,7 +40,11 @@ class BadTranslator(object):
             if idx + 1 < len(chain):
                 fro = lang
                 to = chain[idx + 1]
-                text = self.translate(text, fro, to)
+                result = self.translate(text, fro, to)
+                if result.get("success"):
+                    text = result.get("text")
+                else:
+                    chain[idx + 1] = fro
                 # print("from", fro, "to", to, ":", text)
         return {
             "text": text,
