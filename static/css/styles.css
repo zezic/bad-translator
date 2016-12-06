@@ -21,6 +21,10 @@ a {
 body.animation a {
   transition: color 0.5s ease-in-out;
 }
+.yandex {
+  display: inline-block;
+  padding-top: 34px;
+}
 a:hover, a:focus {
   color: #92aec3;
 }
@@ -51,6 +55,14 @@ button {
   textarea {
     height: 100px;
     padding: 15px;
+  }
+  .yandex {
+    padding-top: 26px;
+    line-height: 1.1;
+  }
+  .translations .row .in {
+    margin-bottom: 8px;
+    opacity: 0.75;
   }
 }
 @media (min-width: 992px) {
@@ -127,8 +139,11 @@ h3, .translations {
   color: #a1b1bd;
   transition: color 0.5s ease-in-out;
 }
+.yandex-bottom {
+  margin-top: 15px;
+}
 .translations {
-  padding-bottom: 30px;
+  padding-bottom: 25px;
 }
 .translations .row {
   padding-top: 10px;

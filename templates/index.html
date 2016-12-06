@@ -16,11 +16,11 @@
   {% endif %}
     <div class="container">
       <div class="row">
-        <div class="col-xs-6">
+        <div class="col-sm-6 col-xs-12">
           <h1>Bad Translator <span style="opacity: 0.5;">v0.5</span> <span class="icon-lightbulb"></span></h1>
         </div>
-        <div class="col-xs-6 text-right">
-          <a href="http://translate.yandex.com/" style="display: inline-block; padding-top: 34px;">Powered by Yandex.Translate</a>
+        <div class="col-sm-6 text-right hidden-xs" style="overflow-x: hidden;">
+          <a href="http://translate.yandex.com/" class="yandex">Powered by Yandex.Translate</a>
         </div>
       </div>
       <div class="row">
@@ -67,8 +67,10 @@
             </div>
           </div>
         {% endfor %}
+        <a href="http://translate.yandex.com/" class="text-right visible-xs yandex-bottom">Powered by Yandex.Translate</a>
       </div>
     </div>
+
     <script>
       if (localStorage.getItem("theme-light") == "true") {
         var d = document.body;
