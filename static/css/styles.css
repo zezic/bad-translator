@@ -8,29 +8,29 @@ html, body {
   height: 100%;
 }
 body {
-  background-color: #504560;
+  background-color: #26292b;
   transition: background-color 0.5s ease-in-out;
 }
 h1 {
-  color: #292037;
+  color: #4d5c67;
   transition: color 0.5s ease-in-out;
 }
 a {
-  color: #292037;
+  color: #4d5c67;
 }
 body.animation a {
   transition: color 0.5s ease-in-out;
 }
 a:hover, a:focus {
-  color: #e9acff;
+  color: #92aec3;
 }
 textarea {
   width: 100%;
-  background-color: #2b2633;
+  background-color: #202325;
   border-radius: 10px;
   border: 0;
   resize: none;
-  color: #c289a2;
+  color: #a4b5c2;
   height: 240px;
   padding: 20px;
   transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
@@ -41,7 +41,7 @@ button {
   height: 50px;
   border-radius: 10px;
   border: 0;
-  background-color: #654e6c;
+  background-color: #393f44;
   background-image: url("/static/images/go.svg");
   background-repeat: no-repeat;
   background-position: center center;
@@ -62,7 +62,7 @@ body.animation button {
   transition: filter 0.2s ease-in-out, background-color 0.5s ease-in-out;
 }
 button:hover {
-  background-color: #714a7d;
+  background-color: #495661;
 }
 button.disabled {
   filter: blur(15px);
@@ -79,7 +79,7 @@ textarea, button {
 }
 .piece {
   font-size: 14px;
-  color: #292037;
+  color: #4d5c67;
   text-transform: capitalize;
   position: relative;
   transition: color 0.5s ease-in-out;
@@ -124,7 +124,7 @@ textarea, button {
   display: block;
 }
 h3, .translations {
-  color: #292037;
+  color: #a1b1bd;
   transition: color 0.5s ease-in-out;
 }
 .translations {
@@ -136,7 +136,7 @@ h3, .translations {
   transition: border-bottom 0.5s ease-in-out;
 }
 .translations .row:not(:last-child) {
-  border-bottom: 1px solid rgba(41, 32, 55, 0.25);
+  border-bottom: 1px solid rgba(77, 92, 103, 0.25);
 }
 .icon-lightbulb {
   cursor: pointer;
@@ -154,8 +154,11 @@ h3, .translations {
   cursor: pointer;
 }
 .tab.active {
-  background-color: #654e6c;
-  transition: background-color 0.5s ease-in-out;
+  background-color: #53636f;
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+.tab.active a {
+  color: #1d2224;
 }
 body.theme-light {
   background-color: #F5F6F7;
