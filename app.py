@@ -28,6 +28,8 @@ bt = BadTranslator(app.config.get("YANDEX_API_KEY"))
 @app.route("/")
 def index():
     theme_light = request.cookies.get("theme-light") == "true"
+    if not request.cookies.get("theme-light"):
+        theme_light = True
     ip_addr = request.access_route[0]
 
     with open("translations.json", "r") as data_file:
