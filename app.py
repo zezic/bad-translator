@@ -20,11 +20,20 @@ bt = BadTranslator(app.config.get("YANDEX_API_KEY"))
 @app.route("/")
 def index():
     theme_light = request.cookies.get("theme-light") == "true"
+    ip_addr = request.access_route[0]
+
     with open("translations.json", "r") as data_file:
         translations = json.load(data_file)
         if len(translations) > 10:
             translations = translations[-10:]
         translations.reverse()
+
+    for idx, tr in enumerate(translations):
+        if tr.get("likes") and ip_addr in tr.get("likes"):
+            translations[idx].update({
+                "its_you": True
+            })
+
     return render_template("index.html", translations=translations, theme_light=theme_light)
 
 class Translate(Resource):

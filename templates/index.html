@@ -49,8 +49,8 @@
         {% for item in translations %}
           <div class="row">
             <div class="col-sm-5">{{ item.in }}</div>
-            <div class="col-sm-5">{{ item.out }}</div>
-            <div class="col-sm-2 text-right"><span data-id="{{ item.id }}" class="like icon-heart-empty">{{ item.likes|length }}</span></div>
+            <div class="col-sm-5 col-xs-9">{{ item.out }}</div>
+            <div class="col-sm-2 col-xs-3 text-right"><span data-id="{{ item.id }}" class="like {% if item.its_you %}icon-heart{% else %}icon-heart-empty{% endif %}">{{ item.likes|length }}</span></div>
           </div>
         {% endfor %}
       </div>
