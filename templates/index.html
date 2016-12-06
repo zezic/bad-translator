@@ -50,7 +50,7 @@
           <div class="row">
             <div class="col-sm-5">{{ item.in }}</div>
             <div class="col-sm-5 col-xs-9">{{ item.out }}</div>
-            <div class="col-sm-2 col-xs-3 text-right"><span data-id="{{ item.id }}" class="like {% if item.its_you %}icon-heart{% else %}icon-heart-empty{% endif %}">{{ item.likes|length }}</span></div>
+            <div class="col-sm-2 col-xs-3 text-right"><span data-id="{{ item.id }}" class="like {% if item.its_you %}icon-heart{% else %}icon-heart-empty{% endif %} opa-{{ item.likes|length }}">{% if item.likes|length > 0 %}{{ item.likes|length }}{% endif %}</span></div>
           </div>
         {% endfor %}
       </div>
