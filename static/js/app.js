@@ -1,4 +1,9 @@
 $(document).ready(function() {
+
+  if (localStorage.getItem("theme-light") == "true") {
+    $("body").addClass("theme-light");
+  }
+
   $("button").on("click", function() {
     var text_in = $("#in").val();
     var self = $(this);
@@ -18,6 +23,11 @@ $(document).ready(function() {
     setTimeout(function() {
       self.removeClass("disabled");
     }, 3000);
-
   });
+
+  $(".icon-lightbulb").on("click", function() {
+    $("body").toggleClass("theme-light");
+    localStorage.setItem("theme-light", $("body").hasClass("theme-light"));
+  });
+
 });
