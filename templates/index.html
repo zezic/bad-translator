@@ -9,7 +9,11 @@
     <link rel="stylesheet" href="/static/css/clearsans.css">
     <link rel="stylesheet" href="/static/css/bad_translator.css">
   </head>
-  <body>
+  {% if theme_light %}
+    <body class="theme-light">
+  {% else %}
+    <body>
+  {% endif %}
     <div class="container">
       <div class="row">
         <div class="col-xs-6">
@@ -50,7 +54,14 @@
         {% endfor %}
       </div>
     </div>
+    <script>
+      if (localStorage.getItem("theme-light") == "true") {
+        var d = document.body;
+        d.className += " theme-light";
+      }
+    </script>
     <script src="/static/js/vendor/jquery-3.1.1.min.js"></script>
+    <script src="/static/js/vendor/js.cookie.js"></script>
     <script src="/static/js/app.js"></script>
   </body>
 </html>

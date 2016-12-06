@@ -3,6 +3,7 @@ from flask_restful import Api, Resource
 from bad_translator import BadTranslator
 import json
 import os.path
+from uuid import uuid4
 
 if not os.path.exists("translations.json"):
     with open("translations.json", "a+") as data_file:
@@ -18,12 +19,13 @@ bt = BadTranslator(app.config.get("YANDEX_API_KEY"))
 
 @app.route("/")
 def index():
+    theme_light = request.cookies.get("theme-light") == "true"
     with open("translations.json", "r") as data_file:
         translations = json.load(data_file)
         if len(translations) > 10:
             translations = translations[-10:]
         translations.reverse()
-    return render_template("index.html", translations=translations)
+    return render_template("index.html", translations=translations, theme_light=theme_light)
 
 class Translate(Resource):
     def get(self):
@@ -41,8 +43,10 @@ class Translate(Resource):
                 if not data:
                     data = []
                 data.append({
+                    "id": uuid4().hex,
                     "in": text,
-                    "out": result.get("text")
+                    "out": result.get("text"),
+                    "likes": []
                 })
                 json.dump(data, data_file)
             return result
