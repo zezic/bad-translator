@@ -166,6 +166,8 @@ h3, .translations {
   display: inline-block;
   padding: 4px 20px 6px;
   border-radius: 27px;
+}
+.tab a {
   cursor: pointer;
 }
 .tab.active {
