@@ -35,12 +35,6 @@ textarea {
   padding: 20px;
   transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
 }
-@media screen and (max-width: 400px) {
-  textarea {
-    height: 100px;
-    padding: 15px;
-  }
-}
 button {
   filter: blur(0px);
   width: 100px;
@@ -52,6 +46,17 @@ button {
   background-repeat: no-repeat;
   background-position: center center;
   transition: filter 0.2s ease-in-out;
+}
+@media (max-width: 767px) {
+  textarea {
+    height: 100px;
+    padding: 15px;
+  }
+}
+@media (min-width: 992px) {
+  button {
+    margin-top: 90px;
+  }
 }
 body.animation button {
   transition: filter 0.2s ease-in-out, background-color 0.5s ease-in-out;
