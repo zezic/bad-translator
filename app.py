@@ -22,6 +22,7 @@ def index():
         translations = json.load(data_file)
         if len(translations) > 10:
             translations = translations[:10]
+        translations.reverse()
     return render_template("index.html", translations=translations)
 
 class Translate(Resource):
