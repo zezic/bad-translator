@@ -1,4 +1,5 @@
 var languages = [];
+var updates_socket;
 
 $(document).ready(function() {
 
@@ -23,7 +24,7 @@ $(document).ready(function() {
       data: {"text": text_in},
       success: function(message) {
         $("#out").val(message.text);
-        $(".chain").html();
+        $(".chain").html("");
         for (var idx in message.chain) {
           var code = message.chain[idx];
           var name = languages.filter(function(obj) {
@@ -50,7 +51,7 @@ $(document).ready(function() {
     Cookies.set('theme-light', $("body").hasClass("theme-light"));
   });
 
-  $(".like").on("click", function() {
+  $(".translations").on("click", ".like", function() {
     var self = $(this);
     var like = $(this).find(".icon");
     var display = $(this).find(".display");
@@ -81,4 +82,13 @@ $(document).ready(function() {
 
   });
 
+  updates_socket = io.connect('http://' + document.domain + ':' + location.port + "/updates");
+  updates_socket.on('translation', function(msg) {
+    var row = $(".tr_source").clone().removeClass("tr_source hidden").addClass("shrinked");
+    row.find(".in").text(msg.in);
+    row.find(".out").text(msg.out);
+    row.find("[data-id]").attr("data-id", msg.id);
+    row.prependTo($(".translations"));
+    row.slideDown();
+  });
 });
