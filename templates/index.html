@@ -17,7 +17,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-6">
-          <h1>Bad Translator <span style="opacity: 0.5;">v0.4</span> <span class="icon-lightbulb"></span></h1>
+          <h1>Bad Translator <span style="opacity: 0.5;">v0.5</span> <span class="icon-lightbulb"></span></h1>
         </div>
         <div class="col-xs-6 text-right">
           <a href="http://translate.yandex.com/" style="display: inline-block; padding-top: 34px;">Powered by Yandex.Translate</a>
@@ -36,8 +36,10 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-6">
-          <h3>Live</h3>
+        <div class="col-xs-12">
+          {% for route in [["", "Live"], ["top", "Top"], ["random", "Random"]] %}
+            <h3 class="tab{% if route[0] == page %} active{% endif %}"><a href="/{{ route[0] }}">{{ route[1] }}</a></h3>
+          {% endfor %}
         </div>
       </div>
       <div class="translations">

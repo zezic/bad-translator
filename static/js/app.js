@@ -84,18 +84,18 @@ $(document).ready(function() {
 
   updates_socket = io.connect('http://' + document.domain + ':' + location.port + "/updates");
 
-  updates_socket.on('translation', function(msg) {
-    var row = $(".tr_source").clone().removeClass("tr_source hidden").addClass("shrinked");
-    row.find(".in").text(msg.in);
-    row.find(".out").text(msg.out);
-    row.find("[data-id]").attr("data-id", msg.id);
-    row.prependTo($(".translations"));
-    row.slideDown();
-  });
+  if ($(".tab.active").index() == 0) {
+    updates_socket.on('translation', function(msg) {
+      var row = $(".tr_source").clone().removeClass("tr_source hidden").addClass("shrinked");
+      row.find(".in").text(msg.in);
+      row.find(".out").text(msg.out);
+      row.find("[data-id]").attr("data-id", msg.id);
+      row.prependTo($(".translations"));
+      row.slideDown();
+    });
+  }
 
   updates_socket.on('like', function(msg) {
-    console.log(msg);
-    console.log($(".like[data-id='" + msg.id + "']").length);
     if ($(".like[data-id='" + msg.id + "']").length > 0) {
       var like = $(".like[data-id='" + msg.id + "']");
       if (msg.likes == 0) {

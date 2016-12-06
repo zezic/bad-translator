@@ -17,6 +17,8 @@ h1 {
 }
 a {
   color: #292037;
+}
+body.animation a {
   transition: color 0.5s ease-in-out;
 }
 a:hover, a:focus {
@@ -140,6 +142,16 @@ h3, .translations {
 .icon-heart::before {
   color: #f03254;
 }
+.tab {
+  display: inline-block;
+  padding: 4px 20px 6px;
+  border-radius: 27px;
+  cursor: pointer;
+}
+.tab.active {
+  background-color: #654e6c;
+  transition: background-color 0.5s ease-in-out;
+}
 body.theme-light {
   background-color: #F5F6F7;
 }
@@ -177,4 +189,7 @@ body.theme-light .translations .row:not(:last-child) {
 }
 body.theme-light .piece {
   color: #7a858e;
+}
+body.theme-light .tab.active {
+  background-color: #E2E4E6;
 }

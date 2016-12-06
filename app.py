@@ -4,6 +4,7 @@ from flask_socketio import SocketIO, emit, join_room, \
     rooms, disconnect
 from bad_translator import BadTranslator
 import json
+import random
 import os.path
 import eventlet
 from uuid import uuid4
@@ -25,8 +26,34 @@ socketio = SocketIO(app, async_mode='eventlet')
 
 bt = BadTranslator(app.config.get("YANDEX_API_KEY"))
 
+def uni_len(items):
+    if items:
+        return len(items)
+    else:
+        return 0
+
+def pick_random(iterator, k):
+    """
+    Samples k elements from an iterable object.
+
+    :param iterator: an object that is iterable
+    :param k: the number of items to sample
+    """
+    # fill the reservoir to start
+    result = [next(iterator) for _ in range(k)]
+
+    n = k - 1
+    for item in iterator:
+        n += 1
+        s = random.randint(0, n)
+        if s < k:
+            result[s] = item
+
+    return result
+
 @app.route("/")
-def index():
+@app.route('/<any(top,random):page>')
+def index(page=None):
     theme_light = request.cookies.get("theme-light") == "true"
     if not request.cookies.get("theme-light"):
         theme_light = True
@@ -34,6 +61,10 @@ def index():
 
     with open("translations.json", "r") as data_file:
         translations = json.load(data_file)
+        if page == "top":
+            translations = sorted(translations, key=lambda item: uni_len(item.get("likes")))
+        if page == "random":
+            translations = pick_random(iter(translations), 10)
         if len(translations) > 10:
             translations = translations[-10:]
         translations.reverse()
@@ -43,8 +74,9 @@ def index():
             translations[idx].update({
                 "its_you": True
             })
-
-    return render_template("index.html", translations=translations, theme_light=theme_light)
+    if not page:
+        page = ""
+    return render_template("index.html", translations=translations, theme_light=theme_light, page=page)
 
 class Translate(Resource):
     def get(self):
