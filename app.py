@@ -19,6 +19,7 @@ bt = BadTranslator(app.config.get("YANDEX_API_KEY"))
 
 @app.route("/")
 def index():
+    print("IP:", request.remote_addr)
     theme_light = request.cookies.get("theme-light") == "true"
     with open("translations.json", "r") as data_file:
         translations = json.load(data_file)
@@ -29,6 +30,7 @@ def index():
 
 class Translate(Resource):
     def get(self):
+        print("IP:", request.remote_addr)
         text = request.args.get("text")
         text = (text[:400] + '...') if len(text) > 400 else text
         if text:

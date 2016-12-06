@@ -22,7 +22,11 @@ $(document).ready(function() {
   });
 
   $(".icon-lightbulb").on("click", function() {
+    $("body").addClass("animation");
     $("body").toggleClass("theme-light");
+    setTimeout(function() {
+      $("body").removeClass("animation");
+    }, 500);
     localStorage.setItem("theme-light", $("body").hasClass("theme-light"));
     Cookies.set('theme-light', $("body").hasClass("theme-light"));
   });

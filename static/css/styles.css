@@ -49,6 +49,9 @@ button {
   background-image: url("/static/images/go.svg");
   background-repeat: no-repeat;
   background-position: center center;
+  transition: filter 0.2s ease-in-out;
+}
+body.animation button {
   transition: filter 0.2s ease-in-out, background-color 0.5s ease-in-out;
 }
 button:hover {
@@ -71,6 +74,7 @@ textarea, button {
     font-size: 24px;
     color: #292037;
     text-transform: capitalize;
+    transition: color 0.5s ease-in-out;
 }
 h3, .translations {
   color: #292037;
@@ -124,4 +128,7 @@ body.theme-light button:hover {
 }
 body.theme-light .translations .row:not(:last-child) {
   border-bottom: 1px solid rgba(125, 131, 138, 0.15);
+}
+body.theme-light .piece {
+  color: #7a858e;
 }
