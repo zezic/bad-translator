@@ -66,15 +66,19 @@ textarea, button {
   margin-bottom: 20px;
 }
 .chain {
-  padding: 0 64px;
   display: inline-block;
-  padding-top: 6px;
+  top: -12px;
+  position: relative;
 }
 .piece {
-    font-size: 24px;
+    font-size: 14px;
     color: #292037;
     text-transform: capitalize;
     transition: color 0.5s ease-in-out;
+}
+.piece:not(:last-child)::after {
+  content: '\f105';
+  opacity: 0.5;
 }
 h3, .translations {
   color: #292037;

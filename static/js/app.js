@@ -1,4 +1,15 @@
+var languages = [];
+
 $(document).ready(function() {
+
+  $.ajax({
+    dataType: "json",
+    url: "/api/languages",
+    data: {},
+    success: function(message) {
+      languages = message;
+    }
+  });
 
   $("button").on("click", function() {
     var text_in = $("#in").val();
@@ -12,6 +23,14 @@ $(document).ready(function() {
       data: {"text": text_in},
       success: function(message) {
         $("#out").val(message.text);
+        $(".chain").html();
+        for (var idx in message.chain) {
+          var code = message.chain[idx];
+          var name = languages.filter(function(obj) {
+            return obj.code == code;
+          })[0].name;
+          $(".chain").append($("<span class='piece' title='" + name + "'>" + message.chain[idx] + "</span>"));
+        }
         self.removeClass("disabled");
       }
     });

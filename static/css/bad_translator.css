@@ -20,7 +20,7 @@
 }
 */
 
- [class^="icon-"]:before, [class*=" icon-"]:before {
+ [class^="icon-"]:before, [class*=" icon-"]:before, .piece::after {
   font-family: "bad_translator";
   font-style: normal;
   font-weight: normal;

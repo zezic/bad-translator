@@ -4,6 +4,7 @@ from bad_translator import BadTranslator
 import json
 import os.path
 from uuid import uuid4
+from languages import languages
 
 if not os.path.exists("translations.json"):
     with open("translations.json", "a+") as data_file:
@@ -24,8 +25,8 @@ def index():
 
     with open("translations.json", "r") as data_file:
         translations = json.load(data_file)
-        if len(translations) > 100:
-            translations = translations[-100:]
+        if len(translations) > 10:
+            translations = translations[-10:]
         translations.reverse()
 
     for idx, tr in enumerate(translations):
@@ -55,6 +56,7 @@ class Translate(Resource):
                     "id": uuid4().hex,
                     "in": text,
                     "out": result.get("text"),
+                    "chain": result.get("chain"),
                     "likes": []
                 })
                 json.dump(data, data_file)
@@ -85,7 +87,12 @@ class Like(Resource):
             "and_you": ip_addr in item.get("likes")
         }
 
+class Languages(Resource):
+    def get(self):
+        return languages
+
 api.add_resource(Translate, '/api/translate')
 api.add_resource(Like, '/api/like/<tr_id>')
+api.add_resource(Languages, '/api/languages')
 
 app.run(host='0.0.0.0', port=5151, debug=True)
