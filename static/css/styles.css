@@ -1,0 +1,80 @@
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+html, body {
+  background-color: #504560;
+  height: 100%;
+}
+h1 {
+  color: #292037;
+}
+a {
+  color: #292037;
+}
+a:hover, a:focus {
+  color: #e9acff;
+}
+textarea {
+  width: 100%;
+  background-color: #2b2633;
+  border-radius: 10px;
+  border: 0;
+  resize: none;
+  color: #c289a2;
+  height: 240px;
+  padding: 20px;
+}
+@media screen and (max-width: 400px) {
+  textarea {
+    height: 150px;
+  }
+}
+button {
+  filter: blur(0px);
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+  border: 0;
+  background-color: #654e6c;
+  background-image: url("/static/images/go.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: filter 0.2s ease-in-out;
+}
+button:hover {
+  background-color: #714a7d;
+}
+button.disabled {
+  filter: blur(15px);
+  pointer-events: none;
+}
+textarea, button {
+  vertical-align: top;
+  margin-bottom: 20px;
+}
+.chain {
+  padding: 0 64px;
+  display: inline-block;
+  padding-top: 6px;
+}
+.piece {
+    font-size: 24px;
+    color: #292037;
+    text-transform: capitalize;
+}
+h3, .translations {
+  color: #292037;
+}
+.translations {
+  padding-bottom: 30px;
+}
+.translations .row {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.translations .row:not(:last-child) {
+  border-bottom: 1px solid rgba(41, 32, 55, 0.25);
+}

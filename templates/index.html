@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bad Translator</title>
+    <link rel="stylesheet" href="/static/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/clearsans.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6">
+          <h1>Bad Translator <span style="opacity: 0.5;">v0.1</a></h1>
+        </div>
+        <div class="col-xs-6 text-right">
+          <a href="http://translate.yandex.com/" style="display: inline-block; padding-top: 34px;">Powered by Yandex.Translate</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <textarea id="in"></textarea>
+        </div>
+        <div class="col-md-2 text-center">
+          <button class="translate"></button>
+          <!-- <div class="chain">
+            <span class="piece">en</span>
+            <span class="piece">ru</span>
+            <span class="piece">jp</span>
+            <span class="piece">en</span>
+          </div> -->
+        </div>
+        <div class="col-md-5">
+          <textarea id="out" readonly></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <h3>Previous translations:</h3>
+        </div>
+      </div>
+      <div class="translations">
+        {% for item in translations %}
+          <div class="row">
+            <div class="col-sm-6">{{ item.in }}</div>
+            <div class="col-sm-6">{{ item.out }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <script src="/static/js/vendor/jquery-3.1.1.min.js"></script>
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>
