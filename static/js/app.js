@@ -33,6 +33,8 @@ $(document).ready(function() {
 
   $(".like").on("click", function() {
     var self = $(this);
+    var like = $(this).find(".icon");
+    var display = $(this).find(".display");
     var tr_id = self.data("id");
 
     $.ajax({
@@ -41,13 +43,17 @@ $(document).ready(function() {
       method: "POST",
       data: {},
       success: function(message) {
-        self.text(message.likes);
-        if (message.and_you) {
-          self.addClass("icon-heart");
-          self.removeClass("icon-heart-empty");
+        if (message.likes == 0) {
+          display.text("");
         } else {
-          self.addClass("icon-heart-empty");
-          self.removeClass("icon-heart");
+          display.text(message.likes);
+        }
+        if (message.and_you) {
+          like.addClass("icon-heart");
+          like.removeClass("icon-heart-empty");
+        } else {
+          like.addClass("icon-heart-empty");
+          like.removeClass("icon-heart");
         }
         // $("#out").val(message.text);
         // self.removeClass("disabled");
