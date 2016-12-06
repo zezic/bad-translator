@@ -89,8 +89,7 @@ class Like(Resource):
 
             with open("translations.json", "w") as data_file:
                 json.dump(data, data_file)
-        print(item)
-        print(ip_addr)
+        socketio.emit('like', {"id": tr_id, "likes": len(item.get("likes"))}, namespace='/updates')
         return {
             "likes": len(item.get("likes")),
             "and_you": ip_addr in item.get("likes")

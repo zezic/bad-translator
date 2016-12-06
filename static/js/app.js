@@ -83,6 +83,7 @@ $(document).ready(function() {
   });
 
   updates_socket = io.connect('http://' + document.domain + ':' + location.port + "/updates");
+
   updates_socket.on('translation', function(msg) {
     var row = $(".tr_source").clone().removeClass("tr_source hidden").addClass("shrinked");
     row.find(".in").text(msg.in);
@@ -91,4 +92,20 @@ $(document).ready(function() {
     row.prependTo($(".translations"));
     row.slideDown();
   });
+
+  updates_socket.on('like', function(msg) {
+    console.log(msg);
+    console.log($(".like[data-id='" + msg.id + "']").length);
+    if ($(".like[data-id='" + msg.id + "']").length > 0) {
+      var like = $(".like[data-id='" + msg.id + "']");
+      if (msg.likes == 0) {
+        like.find(".display").text("");
+        like.find(".icon").addClass("icon-heart-empty");
+        like.find(".icon").removeClass("icon-heart");
+      } else {
+        like.find(".display").text(msg.likes);
+      }
+    }
+  });
+
 });
