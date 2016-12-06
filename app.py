@@ -24,8 +24,8 @@ def index():
 
     with open("translations.json", "r") as data_file:
         translations = json.load(data_file)
-        if len(translations) > 10:
-            translations = translations[-10:]
+        if len(translations) > 100:
+            translations = translations[-100:]
         translations.reverse()
 
     for idx, tr in enumerate(translations):
