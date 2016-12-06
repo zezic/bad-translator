@@ -35,7 +35,8 @@ textarea {
 }
 @media screen and (max-width: 400px) {
   textarea {
-    height: 150px;
+    height: 100px;
+    padding: 15px;
   }
 }
 button {

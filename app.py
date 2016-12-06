@@ -28,7 +28,7 @@ def index():
 class Translate(Resource):
     def get(self):
         text = request.args.get("text")
-        text = (text[:300] + '..') if len(text) > 300 else text
+        text = (text[:400] + '...') if len(text) > 400 else text
         if text:
             result = bt.bad_translate(text)
             if not os.path.exists("translations.json"):
