@@ -19,7 +19,6 @@ bt = BadTranslator(app.config.get("YANDEX_API_KEY"))
 
 @app.route("/")
 def index():
-    print("IP:", request.access_route)
     theme_light = request.cookies.get("theme-light") == "true"
     with open("translations.json", "r") as data_file:
         translations = json.load(data_file)
@@ -30,7 +29,6 @@ def index():
 
 class Translate(Resource):
     def get(self):
-        print("IP:", request.access_route)
         text = request.args.get("text")
         text = (text[:400] + '...') if len(text) > 400 else text
         if text:
@@ -55,6 +53,30 @@ class Translate(Resource):
         else:
             return "No text provided", 400
 
+class Like(Resource):
+    def post(self, tr_id):
+        if tr_id:
+            ip_addr = request.access_route[0]
+            with open("translations.json", "r") as data_file:
+                data = json.load(data_file)
+                for idx, item in enumerate(data):
+                    if item.get("id") == tr_id:
+                        if ip_addr not in item.get("likes"):
+                            item["likes"].append(ip_addr)
+                        else:
+                            item["likes"].remove(ip_addr)
+                        break
+
+            with open("translations.json", "w") as data_file:
+                json.dump(data, data_file)
+        print(item)
+        print(ip_addr)
+        return {
+            "likes": len(item.get("likes")),
+            "and_you": ip_addr in item.get("likes")
+        }
+
 api.add_resource(Translate, '/api/translate')
+api.add_resource(Like, '/api/like/<tr_id>')
 
 app.run(host='0.0.0.0', port=5151, debug=True)

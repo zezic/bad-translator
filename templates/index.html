@@ -17,7 +17,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-6">
-          <h1>Bad Translator <span style="opacity: 0.5;">v0.1</span> <span class="icon-lightbulb"></span></h1>
+          <h1>Bad Translator <span style="opacity: 0.5;">v0.2</span> <span class="icon-lightbulb"></span></h1>
         </div>
         <div class="col-xs-6 text-right">
           <a href="http://translate.yandex.com/" style="display: inline-block; padding-top: 34px;">Powered by Yandex.Translate</a>
@@ -42,14 +42,15 @@
       </div>
       <div class="row">
         <div class="col-xs-6">
-          <h3>Previous translations:</h3>
+          <h3>Random translations:</h3>
         </div>
       </div>
       <div class="translations">
         {% for item in translations %}
           <div class="row">
-            <div class="col-sm-6">{{ item.in }}</div>
-            <div class="col-sm-6">{{ item.out }}</div>
+            <div class="col-sm-5">{{ item.in }}</div>
+            <div class="col-sm-5">{{ item.out }}</div>
+            <div class="col-sm-2 text-right"><span data-id="{{ item.id }}" class="like icon-heart-empty">{{ item.likes|length }}</span></div>
           </div>
         {% endfor %}
       </div>

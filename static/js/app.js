@@ -31,4 +31,29 @@ $(document).ready(function() {
     Cookies.set('theme-light', $("body").hasClass("theme-light"));
   });
 
+  $(".like").on("click", function() {
+    var self = $(this);
+    var tr_id = self.data("id");
+
+    $.ajax({
+      dataType: "json",
+      url: "/api/like/" + tr_id,
+      method: "POST",
+      data: {},
+      success: function(message) {
+        self.text(message.likes);
+        if (message.and_you) {
+          self.addClass("icon-heart");
+          self.removeClass("icon-heart-empty");
+        } else {
+          self.addClass("icon-heart-empty");
+          self.removeClass("icon-heart");
+        }
+        // $("#out").val(message.text);
+        // self.removeClass("disabled");
+      }
+    });
+
+  });
+
 });

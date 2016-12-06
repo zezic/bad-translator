@@ -94,6 +94,12 @@ h3, .translations {
 .icon-lightbulb {
   cursor: pointer;
 }
+.like {
+  cursor: pointer;
+}
+.icon-heart::before {
+  color: #f03254;
+}
 body.theme-light {
   background-color: #F5F6F7;
 }
