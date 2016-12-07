@@ -18,7 +18,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-6 col-xs-12">
-          <h1>Bad Translator <span style="opacity: 0.5;">v0.5</span> <span class="icon-lightbulb"></span></h1>
+          <h1>Bad Translator <span style="opacity: 0.5;">v0.6</span> <span class="icon-lightbulb"></span></h1>
         </div>
         <div class="col-sm-6 text-right hidden-xs" style="overflow-x: hidden;">
           <a href="http://translate.yandex.com/" class="yandex">Powered by Yandex.Translate</a>
@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 tabs">
           {% for route in [["", "Live"], ["top", "Top"], ["random", "Random"]] %}
             <h3 class="tab{% if route[0] == page %} active{% endif %}"><a href="/{{ route[0] }}">{{ route[1] }}</a></h3>
           {% endfor %}
@@ -70,8 +70,8 @@
             </div>
           </div>
         {% endfor %}
-        <a href="http://translate.yandex.com/" class="text-right visible-xs yandex-bottom">Powered by Yandex.Translate</a>
       </div>
+      <a href="http://translate.yandex.com/" class="text-right visible-xs yandex-bottom">Powered by Yandex.Translate</a>
     </div>
 
     <script>
