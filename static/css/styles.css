@@ -299,3 +299,43 @@ a.github {
   width: 0.1em;
   margin-left: .3em;
 }
+
+.github-corner:hover .octo-arm {
+  animation:octocat-wave 560ms ease-in-out
+}
+@keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform:rotate(10deg);
+  }
+}
+@media (max-width:500px) {
+  .github-corner:hover .octo-arm {
+    animation: none;
+  }
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
+.github-corner svg path.tri {
+  fill: #393F44;
+  transition: fill 0.5s ease-in-out;
+}
+.github-corner svg path.octo-arm,
+.github-corner svg path.octo-body {
+  fill: #26292B;
+  transition: fill 0.5s ease-in-out;
+}
+
+body.theme-light .github-corner svg path.tri {
+  fill: #C0C7CF;
+}
+body.theme-light .github-corner svg path.octo-arm,
+body.theme-light .github-corner svg path.octo-body {
+  fill: #F5F6F7;
+}
