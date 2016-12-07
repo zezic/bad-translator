@@ -8,7 +8,7 @@
     cd bad-translator
     python3 -m venv .venv
     source .venv/bin/activate
-    pip install flask-restful requests
+    pip install flask-restful flask-socketio eventlet requests
 
 ## Configure:
 
