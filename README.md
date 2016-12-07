@@ -1,5 +1,7 @@
 # Bad Translator
 
+[Demo](http://trtr.zezic.ru)
+
 ## Prepare:
 
     git clone https://github.com/zezic/bad-translator.git
