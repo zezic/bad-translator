@@ -101,6 +101,11 @@ $(document).ready(function() {
       row.find(".out").text(msg.out);
       row.find("[data-id]").attr("data-id", msg.id);
       row.find("[data-clipboard-text]").attr("data-clipboard-text", msg.in + " --> " + msg.out);
+      for (var idx in msg.chain) {
+        var code = msg.chain[idx];
+        row.find(".pieces").append($("<span class='piece'>" + code + "</div></span>"));
+        row.find(".pieces").append(" ");
+      }
       row.prependTo($(".translations"));
       row.slideDown();
     });

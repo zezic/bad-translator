@@ -286,3 +286,16 @@ a.github {
     transform: scale(1.0);
   }
 }
+.nowrap {
+  white-space: nowrap;
+}
+.pieces {
+  white-space: nowrap;
+}
+.pieces .piece {
+  font-size: 12px;
+}
+.pieces .piece::after {
+  width: 0.1em;
+  margin-left: .3em;
+}

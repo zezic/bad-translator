@@ -46,9 +46,11 @@
       <div class="translations">
 
         <div class="row hidden tr_source" style="display: none;">
-          <div class="col-sm-5 in"></div>
-          <div class="col-sm-5 col-xs-9 out"></div>
-          <div class="col-sm-2 col-xs-3 text-right">
+          <div class="col-lg-4 col-sm-5 in"></div>
+          <div class="col-lg-4 col-sm-5 col-xs-9 out"></div>
+          <div class="col-lg-2 visible-lg pieces">
+          </div>
+          <div class="col-lg-2 col-sm-2 col-xs-3 text-right nowrap">
             <span data-id="" class="like">
               <span class="display"></span>
               <span class="icon icon-heart-empty opa-0"></span>
@@ -59,9 +61,14 @@
 
         {% for item in translations %}
           <div class="row">
-            <div class="col-sm-5 in">{{ item.in }}</div>
-            <div class="col-sm-5 col-xs-9 out">{{ item.out }}</div>
-            <div class="col-sm-2 col-xs-3 text-right">
+            <div class="col-lg-4 col-sm-5 in">{{ item.in }}</div>
+            <div class="col-lg-4 col-sm-5 col-xs-9 out">{{ item.out }}</div>
+            <div class="col-lg-2 visible-lg pieces">
+              {% for lang in item.chain %}
+                <span class="piece">{{ lang }}</span>
+              {% endfor %}
+            </div>
+            <div class="col-lg-2 col-sm-2 col-xs-3 text-right nowrap">
               <span data-id="{{ item.id }}" class="like">
                 <span class="display">{% if item.likes|length > 0 %}{{ item.likes|length }}{% endif %}</span>
                 <span class="icon {% if item.its_you %}icon-heart{% else %}icon-heart-empty{% endif %} opa-{{ item.likes|length }}"></span>
