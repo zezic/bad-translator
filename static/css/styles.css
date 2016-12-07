@@ -40,7 +40,7 @@ textarea {
   padding: 20px;
   transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
 }
-button {
+button.translate {
   filter: blur(0px);
   width: 100px;
   height: 50px;
@@ -67,21 +67,21 @@ button {
   }
 }
 @media (min-width: 992px) {
-  button {
+  button.translate {
     margin-top: 90px;
   }
 }
-body.animation button {
+body.animation button.translate {
   transition: filter 0.2s ease-in-out, background-color 0.5s ease-in-out;
 }
-button:hover {
+button.translate:hover {
   background-color: #495661;
 }
-button.disabled {
+button.translate.disabled {
   filter: blur(15px);
   pointer-events: none;
 }
-textarea, button {
+textarea, button.translate {
   vertical-align: top;
   margin-bottom: 20px;
 }
@@ -204,10 +204,10 @@ body.theme-light textarea {
   background-color: white;
   color: #3a3e42;
 }
-body.theme-light button {
+body.theme-light button.translate {
   background-color: #c0c7cf;
 }
-body.theme-light button:hover {
+body.theme-light button.translate:hover {
   background-color: #3c8fee;
 }
 body.theme-light .translations .row:not(:last-child) {
@@ -251,4 +251,32 @@ a.github {
 .github::before {
   position: absolute;
   top: 2px;
+}
+.icon-docs {
+  display: inline;
+  cursor: pointer;
+  margin-left: 5px;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+}
+.icon-docs:focus {
+  outline: none;
+}
+.icon-docs.animate {
+  animation-duration: 0.3s;
+  animation-name: bump;
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1.0);
+  }
+
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1.0);
+  }
 }

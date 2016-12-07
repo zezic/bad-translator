@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'bad_translator';
-  src: url('/static/fonts/bad_translator.eot?58899301');
-  src: url('/static/fonts/bad_translator.eot?58899301#iefix') format('embedded-opentype'),
-       url('/static/fonts/bad_translator.woff2?58899301') format('woff2'),
-       url('/static/fonts/bad_translator.woff?58899301') format('woff'),
-       url('/static/fonts/bad_translator.ttf?58899301') format('truetype'),
-       url('/static/fonts/bad_translator.svg?58899301#bad_translator') format('svg');
+  src: url('/static/fonts/bad_translator.eot?54007383');
+  src: url('/static/fonts/bad_translator.eot?54007383#iefix') format('embedded-opentype'),
+       url('/static/fonts/bad_translator.woff2?54007383') format('woff2'),
+       url('/static/fonts/bad_translator.woff?54007383') format('woff'),
+       url('/static/fonts/bad_translator.ttf?54007383') format('truetype'),
+       url('/static/fonts/bad_translator.svg?54007383#bad_translator') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -57,6 +57,7 @@
 
 .icon-heart-empty:before { content: '\e800'; } /* '' */
 .icon-heart:before { content: '\e801'; } /* '' */
+.icon-docs:before { content: '\f0c5'; } /* '' */
 .icon-lightbulb:before { content: '\f0eb'; } /* '' */
 .icon-angle-left:before { content: '\f104'; } /* '' */
 .icon-angle-right:before { content: '\f105'; } /* '' */

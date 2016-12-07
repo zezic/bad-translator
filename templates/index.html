@@ -53,6 +53,7 @@
               <span class="display"></span>
               <span class="icon icon-heart-empty opa-0"></span>
             </span>
+            <button class="icon-docs hidden-xs" data-clipboard-text=""></button>
           </div>
         </div>
 
@@ -65,6 +66,7 @@
                 <span class="display">{% if item.likes|length > 0 %}{{ item.likes|length }}{% endif %}</span>
                 <span class="icon {% if item.its_you %}icon-heart{% else %}icon-heart-empty{% endif %} opa-{{ item.likes|length }}"></span>
               </span>
+              <button class="icon-docs hidden-xs" data-clipboard-text="{{ item.in }} --> {{ item.out }}"></button>
             </div>
           </div>
         {% endfor %}
@@ -81,6 +83,7 @@
     <script src="/static/js/vendor/jquery-3.1.1.min.js"></script>
     <script src="/static/js/vendor/socket.io-1.4.5.js"></script>
     <script src="/static/js/vendor/js.cookie.js"></script>
+    <script src="/static/js/vendor/clipboard.min.js"></script>
     <script src="/static/js/app.js"></script>
   </body>
 </html>

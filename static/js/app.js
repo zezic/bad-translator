@@ -3,6 +3,16 @@ var updates_socket;
 
 $(document).ready(function() {
 
+  new Clipboard('.icon-docs');
+
+  $(".translations").on("click", ".icon-docs", function() {
+    var self = $(this);
+    self.addClass("animate");
+    setTimeout(function() {
+      self.removeClass("animate");
+    }, 500);
+  });
+
   $.ajax({
     dataType: "json",
     url: "/api/languages",
@@ -12,7 +22,7 @@ $(document).ready(function() {
     }
   });
 
-  $("button").on("click", function() {
+  $("button.translate").on("click", function() {
     var text_in = $("#in").val();
     var self = $(this);
 
@@ -90,6 +100,7 @@ $(document).ready(function() {
       row.find(".in").text(msg.in);
       row.find(".out").text(msg.out);
       row.find("[data-id]").attr("data-id", msg.id);
+      row.find("[data-clipboard-text]").attr("data-clipboard-text", msg.in + " --> " + msg.out);
       row.prependTo($(".translations"));
       row.slideDown();
     });
