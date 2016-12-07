@@ -82,6 +82,7 @@ class Translate(Resource):
     def get(self):
         text = request.args.get("text")
         text = (text[:400] + '...') if len(text) > 400 else text
+        text = text.replace("\n", " ")
         if text:
             result = bt.bad_translate(text)
             if not os.path.exists("translations.json"):
