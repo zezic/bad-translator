@@ -1,9 +1,48 @@
 var languages = [];
 var updates_socket;
 
+function with_code(obj, code) {
+  return obj.code == code;
+}
+
+function do_translation() {
+  var text_in = $("#in").val();
+  var button = $("button.translate");
+  if (button.hasClass("disabled")) {
+    return false;
+  }
+  button.addClass("disabled");
+
+  $.ajax({
+    dataType: "json",
+    url: "/api/translate",
+    data: {"text": text_in},
+    success: function(message) {
+      $("#out").val(message.text);
+      $(".chain").html("");
+      for (var idx in message.chain) {
+        var code = message.chain[idx];
+        var name = languages.filter(with_code(obj, code))[0].name;
+        $(".chain").append($("<span class='piece'>" + message.chain[idx] + "<div class='tip'><span>" + name + "</span></div></span>"));
+      }
+      button.removeClass("disabled");
+    }
+  });
+
+  setTimeout(function() {
+    button.removeClass("disabled");
+  }, 3000);
+}
+
 $(document).ready(function() {
 
   new Clipboard('.icon-docs');
+
+  $('body').keydown(function (e) {
+    if (e.ctrlKey && e.keyCode == 13) {
+      do_translation();
+    }
+  });
 
   $(".translations").on("click", ".icon-docs", function() {
     var self = $(this);
@@ -22,34 +61,7 @@ $(document).ready(function() {
     }
   });
 
-  $("button.translate").on("click", function() {
-    var text_in = $("#in").val();
-    var self = $(this);
-
-    self.addClass("disabled");
-
-    $.ajax({
-      dataType: "json",
-      url: "/api/translate",
-      data: {"text": text_in},
-      success: function(message) {
-        $("#out").val(message.text);
-        $(".chain").html("");
-        for (var idx in message.chain) {
-          var code = message.chain[idx];
-          var name = languages.filter(function(obj) {
-            return obj.code == code;
-          })[0].name;
-          $(".chain").append($("<span class='piece'>" + message.chain[idx] + "<div class='tip'><span>" + name + "</span></div></span>"));
-        }
-        self.removeClass("disabled");
-      }
-    });
-
-    setTimeout(function() {
-      self.removeClass("disabled");
-    }, 3000);
-  });
+  $("button.translate").on("click", do_translation);
 
   $(".icon-lightbulb").on("click", function() {
     $("body").addClass("animation");

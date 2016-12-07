@@ -339,3 +339,6 @@ body.theme-light .github-corner svg path.octo-arm,
 body.theme-light .github-corner svg path.octo-body {
   fill: #F5F6F7;
 }
+.hint {
+  color: #757e88;
+}
