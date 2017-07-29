@@ -22,7 +22,7 @@ function do_translation() {
       $(".chain").html("");
       for (var idx in message.chain) {
         var code = message.chain[idx];
-        var name = languages.filter(with_code(obj, code))[0].name;
+        var name = languages.filter(function(obj) { return with_code(obj, code) })[0].name;
         $(".chain").append($("<span class='piece'>" + message.chain[idx] + "<div class='tip'><span>" + name + "</span></div></span>"));
       }
       button.removeClass("disabled");
@@ -104,7 +104,7 @@ $(document).ready(function() {
 
   });
 
-  updates_socket = io.connect('http://' + document.domain + ':' + location.port + "/updates");
+  updates_socket = io.connect('https://' + document.domain + ':' + location.port + "/updates");
 
   if ($(".tab.active").index() == 0) {
     updates_socket.on('translation', function(msg) {
