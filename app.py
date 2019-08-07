@@ -1,16 +1,17 @@
+import eventlet
+eventlet.monkey_patch()
+
 from flask import Flask, render_template, request
 from flask_restful import Api, Resource
 from flask_socketio import SocketIO, emit, join_room, \
     rooms, disconnect
-from bad_translator import BadTranslator
 import json
 import random
 import os.path
-import eventlet
 from uuid import uuid4
 from languages import languages
 
-eventlet.monkey_patch()
+from bad_translator import BadTranslator
 
 if not os.path.exists("translations.json"):
     with open("translations.json", "a+") as data_file:
@@ -24,6 +25,7 @@ api = Api(app)
 
 socketio = SocketIO(app, async_mode='eventlet')
 
+print(app.config)
 bt = BadTranslator(app.config.get("YANDEX_API_KEY"))
 
 def uni_len(items):
@@ -61,12 +63,13 @@ def index(page=None):
 
     with open("translations.json", "r") as data_file:
         translations = json.load(data_file)
+        target_length = min(len(translations), 10)
         if page == "top":
             translations = sorted(translations, key=lambda item: uni_len(item.get("likes")))
         if page == "random":
-            translations = pick_random(iter(translations), 10)
-        if len(translations) > 10:
-            translations = translations[-10:]
+            translations = pick_random(iter(translations), target_length)
+        if len(translations) > target_length:
+            translations = translations[-target_length:]
         translations.reverse()
 
     for idx, tr in enumerate(translations):
